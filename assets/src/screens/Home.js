@@ -1,14 +1,18 @@
 import { Image, ScrollView, StyleSheet, Text, View } from "react-native";
 
-import boleto from "../../img/boleto.png";
-import dinheiro from "../../img/dinheiro.png";
-import Logo from "../../img/logo.png";
-import Mastercard from "../../img/mastercard.png";
-import pix from "../../img/pix.png";
-import Setting from "../../img/setting.png";
-import Wallet from "../../img/Wallet.png";
 
-export function Home() {
+import Logo from "../img/logo.png";
+import Mastercard from "../img/mastercard.png";
+
+import Setting from "../img/setting.png";
+import Wallet from "../img/Wallet.png";
+import { useState } from "react";
+import Card from "../components/Card";
+
+
+export default function Home({navigation}) {
+  const [saldo, setSaldo] = useState(200);
+  const handlePix = () => { navigation.navigate("Pix",{ saldo, setSaldo }) }
   return (
     <View style={styles.container}>
       <View style={styles.content}>
@@ -31,7 +35,7 @@ export function Home() {
             <Text style={styles.cardDetailsHeaderText}>Saldo disponível</Text>
             <Image source={Wallet} />
           </View>
-          <Text style={styles.cardDetailsTextValue}>R$145,76</Text>
+          <Text style={styles.cardDetailsTextValue}>R${saldo}</Text>
         </View>
       </View>
       <View style={styles.footer}>
@@ -40,32 +44,15 @@ export function Home() {
           style={styles.footerScrollCardContainer}
           showsHorizontalScrollIndicator={false}
           horizontal={true}
-        >
-          <View style={styles.footerCard}>
-            <Image source={pix} />
-            <Text style={styles.footerCardText}>Fazer um Pix</Text>
-          </View>
-          <View style={styles.footerCard}>
-            <Image source={boleto} />
-            <Text style={styles.footerCardText}>Pagar um boleto</Text>
-          </View>
-          <View style={styles.footerCard}>
-            <Image source={dinheiro} />
-            <Text style={styles.footerCardText}>Fazer um depósito</Text>
-          </View>
-           <View style={styles.footerCard}>
-            <Image source={dinheiro} />
-            <Text style={styles.footerCardText}>Fazer um depósito</Text>
-          </View>
-           <View style={styles.footerCard}>
-            <Image source={dinheiro} />
-            <Text style={styles.footerCardText}>Fazer um depósito</Text>
-          </View>
-           <View style={styles.footerCard}>
-            <Image source={dinheiro} />
-            <Text style={styles.footerCardText}>Fazer um depósito</Text>
-          </View>
-          <View style={styles.footerCard}></View>
+        > 
+
+            <Card texto="Fazer Pix" imagem="pix" onPress={handlePix}/>
+          <Card texto="Fazer Pix" imagem="pix" onPress={handlePix} />
+          <Card texto="Fazer Pix" imagem="pix" onPress={handlePix} />
+          <Card texto="Fazer Pix" imagem="pix" onPress={handlePix} />
+          <Card texto="Fazer Pix" imagem="pix" onPress={handlePix} />
+          <Card texto="Fazer Pix" imagem="pix" onPress={handlePix} />
+
         </ScrollView>
       </View>
     </View>
